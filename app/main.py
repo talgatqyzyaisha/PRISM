@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app import models
+from app.routers import movies
 
 # Жүйе іске қосылғанда ДҚ кестелерді автоматты түрде құру
 Base.metadata.create_all(bind=engine)
@@ -20,6 +21,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Роутерді жүйеге қосу
+app.include_router(movies.router)
 
 @app.get("/")
 def read_root():

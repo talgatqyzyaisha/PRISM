@@ -29,7 +29,7 @@ prism/
 │   └── routers/
 │       ├── auth.py      # POST /auth/login, POST /auth/register
 │       ├── users.py     # Пайдаланушыларды басқару
-│       ├── content.py   # Фильмдер мен сериалдарды басқару (CRUD)
+│       ├── movies.py   # Фильмдер мен сериалдарды басқару (CRUD)
 │       ├── reviews.py   # Секретті есептер мен бағаларды қосу (CRUD)
 │       └── analytics.py # Директорға арналған күрделі аналитикалық сұраулар
 ├── .env.example
@@ -131,6 +131,7 @@ DELETE /api/v1/reviews/{id} — Есепті өшіру [User(өздігінен
 GET /api/v1/analytics/summary — Фильмдердің орташа балы мен жүйелік ұсыныстары [Admin]
 POST /api/v1/analytics/{id}/decide — Директордың финалдық шешімін журналға жазу [Admin]
 ```
+
 ## Деплой (Railway)
 1. Жобаның соңғы нұсқасын GitHub репозиторийіне push жасаңыз.
 2. [Railway.app](https://railway.app) платформасына өтіп, аккаунтты GitHub арқылы байланыстырыңыз.
