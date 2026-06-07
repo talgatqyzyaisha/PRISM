@@ -1,0 +1,26 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.database import engine, Base
+from app import models
+
+# Жүйе іске қосылғанда ДҚ кестелерді автоматты түрде құру
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(
+    title="Prism API",
+    description="Ішкікорпоративтік мазмұнды бағалау жүйесі",
+    version="1.0.0"
+)
+
+# CORS баптаулары (болашақта фронтенд сұраныстар жібере алуы үшін)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/")
+def read_root():
+    return {"message": "Prism API-ге қош келдіңіз! Жүйе сәтті жұмыс істеп тұр."}
