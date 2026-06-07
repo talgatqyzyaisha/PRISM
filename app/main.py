@@ -2,14 +2,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app import models
-from app.routers import movies
+from app.routers import movies, users
 
 # Жүйе іске қосылғанда ДҚ кестелерді автоматты түрде құру
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Prism API",
-    description="Ішкікорпоративтік мазмұнды бағалау жүйесі",
+    description="Медиаконтентті бағалау және тәуекелдерді талдау жүйесі",
     version="1.0.0"
 )
 
@@ -24,6 +24,7 @@ app.add_middleware(
 
 # Роутерді жүйеге қосу
 app.include_router(movies.router)
+app.include_router(users.router)
 
 @app.get("/")
 def read_root():
